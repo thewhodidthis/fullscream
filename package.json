@@ -1,0 +1,46 @@
+{
+  "name": "fullscream",
+  "version": "0.0.1",
+  "description": "Yet another fullscreen API wrapper",
+  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (http://thewhodidthis.com/)",
+  "homepage": "https://github.com/thewhodidthis/fullscream",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "clear": "npm run clear:dist && npm run clear:logs",
+    "clear:dist": "rm -rf dist/",
+    "clear:logs": "rm -f *.log",
+    "lint": "(jshint index.js & jscs index.js --reporter=inlinesingle) 2>&1 | tee lint-js.log",
+    "postlint": "find lint-js.log -size 0 -print0 | xargs -0 rm",
+    "start": "npm run build && npm run build:min",
+    "prebuild": "mkdir -p dist/",
+    "build": "browserify index.js -s fullscream > ./dist/fullscream.js",
+    "build:min": "browserify index.js -s fullscream | uglifyjs -o ./dist/fullscream.min.js",
+    "preversion": "npm run clear:logs"
+  },
+  "config": {
+    "jscsrc": ".jscsrc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thewhodidthis/fullscream.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thewhodidthis/fullscream/issues"
+  },
+  "keywords": [
+    "fullscreen",
+    "screenfull"
+  ],
+  "engines": {
+    "node": ">=0.11.0",
+    "npm": ">=2.0.0"
+  },
+  "devDependencies": {
+    "jscs": "latest",
+    "jshint": "latest",
+    "uglify-js": "latest",
+    "browserify": "latest"
+  },
+  "license": "Unlicense"
+}
