@@ -1,7 +1,7 @@
 {
   "name": "fullscream",
   "version": "0.0.1",
-  "description": "Yet another fullscreen API wrapper",
+  "description": "Helps go fullscreen",
   "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (http://thewhodidthis.com/)",
   "homepage": "https://github.com/thewhodidthis/fullscream",
   "main": "index.js",
