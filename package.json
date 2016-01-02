@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "Helps go fullscreen",
   "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (http://thewhodidthis.com/)",
-  "homepage": "https://github.com/thewhodidthis/fullscream",
+  "homepage": "https://github.com/thewhodidthis/fullscream#readme",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/thewhodidthis/fullscream.git"
+    "url": "git+https://github.com/thewhodidthis/fullscream.git"
   },
   "bugs": {
     "url": "https://github.com/thewhodidthis/fullscream/issues"
