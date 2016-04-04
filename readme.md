@@ -1,5 +1,5 @@
 ## Fullscream
-> Yet another super simple fullscreen API wrapper.
+> Just another way to go fullscreen.
 
 ### Setup
 ```sh

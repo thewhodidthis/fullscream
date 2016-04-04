@@ -2,9 +2,22 @@
   "name": "fullscream",
   "version": "0.0.2",
   "description": "Helps go fullscreen",
-  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (http://thewhodidthis.com/)",
-  "homepage": "https://github.com/thewhodidthis/fullscream#readme",
+  "keywords": [
+    "fullscreen",
+    "screenfull"
+  ],
   "main": "index.js",
+  "homepage": "https://github.com/thewhodidthis/fullscream#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thewhodidthis/fullscream.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thewhodidthis/fullscream/issues"
+  },
+  "config": {
+    "jscsrc": ".jscsrc"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "clear": "npm run clear:dist && npm run clear:logs",
@@ -18,23 +31,9 @@
     "build:min": "browserify index.js -s fullscream | uglifyjs -o ./dist/fullscream.min.js",
     "preversion": "npm run clear:logs"
   },
-  "config": {
-    "jscsrc": ".jscsrc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/thewhodidthis/fullscream.git"
-  },
-  "bugs": {
-    "url": "https://github.com/thewhodidthis/fullscream/issues"
-  },
-  "keywords": [
-    "fullscreen",
-    "screenfull"
-  ],
   "engines": {
-    "node": ">=0.11.0",
-    "npm": ">=2.0.0"
+    "node": ">=4.2.4",
+    "npm": ">=3.5.3"
   },
   "devDependencies": {
     "jscs": "latest",
@@ -42,5 +41,6 @@
     "uglify-js": "latest",
     "browserify": "latest"
   },
+  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
   "license": "Unlicense"
 }
