@@ -25,10 +25,12 @@
     "clear:logs": "rm -f *.log",
     "lint": "(jshint index.js & jscs index.js --reporter=inlinesingle) 2>&1 | tee lint-js.log",
     "postlint": "find lint-js.log -size 0 -print0 | xargs -0 rm",
-    "start": "npm run build && npm run build:min",
+    "start": "npm run build",
+    "watch": "watchify index.js -s animation -o ./dist/animation.js",
     "prebuild": "mkdir -p dist/",
-    "build": "browserify index.js -s fullscream > ./dist/fullscream.js",
+    "build": "browserify index.js -s fullscream -o ./dist/fullscream.js",
     "build:min": "browserify index.js -s fullscream | uglifyjs -o ./dist/fullscream.min.js",
+    "postbuild": "npm run build:min",
     "preversion": "npm run clear:logs"
   },
   "engines": {
