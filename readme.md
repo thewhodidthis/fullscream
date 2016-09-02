@@ -1,21 +1,19 @@
 ## Fullscream
-> Just another way to go fullscreen.
+> Just another fullscreen api wrapper
 
 ### Setup
 ```sh
 npm install fullscream --save
-# or
-bower install fullscream
 ```
 
 ### Usage
 ```js
-var fullscream = require('fullscream');
+var fullscream = require('fullscream')();
 
 var $target = document.getElementById('target');
-var $resize = document.getElementById('resize');
+var $button = document.getElementById('button');
 
-$resize.addEventListener('click', function() {
+$button.addEventListener('click', function() {
 	fullscream.toggle($target);
 }, false);
 ```
