@@ -10,10 +10,10 @@ function Fullscream() {
 
     if (target.requestFullscreen) {
       target.requestFullscreen();
-    } else if (target.mozRequestFullScreen) {
-      target.mozRequestFullScreen();
     } else if (target.webkitRequestFullScreen) {
       target.webkitRequestFullScreen();
+    } else if (target.mozRequestFullScreen) {
+      target.mozRequestFullScreen();
     }
   };
 
@@ -41,16 +41,16 @@ function Fullscream() {
     isFull = !!document.fullScreen;
   }, false);
 
+  document.addEventListener('msfullscreenchange', function _onFullscreenChange() {
+    isFull = !!document.msFullscreenElement;
+  }, false);
+
   document.addEventListener('mozfullscreenchange', function _onFullscreenChange() {
     isFull = !!document.mozFullScreen;
   }, false);
 
   document.addEventListener('webkitfullscreenchange', function _onFullscreenChange() {
     isFull = !!document.webkitIsFullScreen;
-  }, false);
-
-  document.addEventListener('msfullscreenchange', function _onFullscreenChange() {
-    isFull = !!document.msFullscreenElement;
   }, false);
 
   return {
