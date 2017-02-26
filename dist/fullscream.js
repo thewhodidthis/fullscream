@@ -1,65 +1,67 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.fullscream = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-function Fullscream() {
+var fullscream = (function () {
   'use strict';
 
-  var isFull = false;
+  var fullscream = function fullscream() {
+    var host = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.body;
 
-  var _request = function _request(target) {
-    if (!target) {
-      return;
-    }
+    // Flag
+    var isFull = false;
 
-    if (target.requestFullscreen) {
-      target.requestFullscreen();
-    } else if (target.webkitRequestFullScreen) {
-      target.webkitRequestFullScreen();
-    } else if (target.mozRequestFullScreen) {
-      target.mozRequestFullScreen();
-    }
+    // Ask for
+    var request = function request(element) {
+      var target = element || host;
+
+      if (target.requestFullscreen) {
+        target.requestFullscreen();
+      } else if (target.webkitRequestFullScreen) {
+        target.webkitRequestFullScreen();
+      } else if (target.mozRequestFullScreen) {
+        target.mozRequestFullScreen();
+      }
+    };
+
+    // Drop out of
+    var exit = function exit() {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    };
+
+    // Switch for
+    var toggle = function toggle(element) {
+      if (isFull) {
+        exit();
+      } else {
+        request(element);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', function () {
+      isFull = !!document.fullScreen;
+    }, false);
+
+    document.addEventListener('msfullscreenchange', function () {
+      isFull = !!document.msFullscreenElement;
+    }, false);
+
+    document.addEventListener('mozfullscreenchange', function () {
+      isFull = !!document.mozFullScreen;
+    }, false);
+
+    document.addEventListener('webkitfullscreenchange', function () {
+      isFull = !!document.webkitIsFullScreen;
+    }, false);
+
+    return { toggle: toggle };
   };
 
-  var _exit = function _exit() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-  };
+  return fullscream;
 
-  var toggle = function _toggle(target) {
-    if (isFull) {
-      _exit();
-    } else {
-      _request(target);
-    }
-  };
-
-  document.addEventListener('fullscreenchange', function _onFullscreenChange() {
-    isFull = !!document.fullScreen;
-  }, false);
-
-  document.addEventListener('msfullscreenchange', function _onFullscreenChange() {
-    isFull = !!document.msFullscreenElement;
-  }, false);
-
-  document.addEventListener('mozfullscreenchange', function _onFullscreenChange() {
-    isFull = !!document.mozFullScreen;
-  }, false);
-
-  document.addEventListener('webkitfullscreenchange', function _onFullscreenChange() {
-    isFull = !!document.webkitIsFullScreen;
-  }, false);
-
-  return {
-    toggle: toggle
-  };
-}
-
-module.exports = Fullscream;
-
-},{}]},{},[1])(1)
-});
+}());
+//# sourceMappingURL=fullscream.js.map
