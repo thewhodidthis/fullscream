@@ -8,12 +8,10 @@ npm install fullscream --save
 
 ### Usage
 ```js
-var fullscream = require('fullscream')();
+var fullscream = require('fullscream');
+var screamer = fullscream(document.getElementById('host'));
 
-var $target = document.getElementById('target');
-var $button = document.getElementById('button');
-
-$button.addEventListener('click', function() {
-	fullscream.toggle($target);
+document.getElementById('button').addEventListener('click', function () {
+  screamer.toggle();
 }, false);
 ```
