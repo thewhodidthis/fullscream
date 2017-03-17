@@ -17,16 +17,15 @@
     "url": "https://github.com/thewhodidthis/fullscream/issues"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "browserify test/*.js | testling -x open",
     "clear": "npm run clear:dist && npm run clear:logs",
     "clear:dist": "rm -rf dist/",
     "clear:logs": "rm -f *.log",
     "lint": "eslint index.es; exit 0",
-    "start": "npm run clear && npm run build",
-    "prebuild": "mkdir -p dist/",
+    "lint:test": "eslint test/index.js; exit 0",
+    "start": "npm run build && npm run build:min",
     "build": "rollup -c",
     "build:min": "uglifyjs dist/fullscream.js -cm > dist/fullscream.min.js",
-    "postbuild": "npm run build:min",
     "preversion": "npm start"
   },
   "engines": {
@@ -36,12 +35,16 @@
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "latest",
+    "babel-plugin-external-helpers": "latest",
     "babel-preset-es2015": "latest",
+    "browserify": "latest",
     "eslint": "latest",
-    "eslint-plugin-import": "latest",
     "eslint-config-airbnb-base": "latest",
+    "eslint-plugin-import": "latest",
     "rollup": "latest",
     "rollup-plugin-babel": "latest",
+    "tape": "latest",
+    "testling": "latest",
     "uglify-js": "latest"
   },
   "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
