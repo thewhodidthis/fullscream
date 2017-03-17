@@ -3,15 +3,18 @@
 
 ### Setup
 ```sh
-npm install fullscream --save
+npm install fullscream
 ```
 
 ### Usage
 ```js
-var fullscream = require('fullscream');
-var screamer = fullscream(document.getElementById('host'));
+import Fullscream from 'fullscream';
 
-document.getElementById('button').addEventListener('click', function () {
-  screamer.toggle();
-}, false);
+// Feed this pseudo constructor with a target element of choice,
+// Will act on document body by default
+const fullscreen = Fullscream(document.body);
+
+document.addEventListener('click', () => {
+  fullscreen.toggle();
+});
 ```
