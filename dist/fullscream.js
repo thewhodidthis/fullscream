@@ -1,10 +1,17 @@
-var fullscream = (function () {
+var Fullscream = (function () {
   'use strict';
 
-  var fullscream = function fullscream() {
-    var host = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.body;
+  // # Fullscream
+  // Just another fullscren api wrapper
 
-    // Flag
+  // Shortcut to help with minification
+  var doc = document;
+
+  // Helps toggle fullscreen on host element
+  var Fullscream = function Fullscream() {
+    var host = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : doc.body;
+
+    // Current status
     var isFull = false;
 
     // Ask for
@@ -22,14 +29,14 @@ var fullscream = (function () {
 
     // Drop out of
     var exit = function exit() {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
+      if (doc.exitFullscreen) {
+        doc.exitFullscreen();
+      } else if (doc.webkitExitFullscreen) {
+        doc.webkitExitFullscreen();
+      } else if (doc.mozCancelFullScreen) {
+        doc.mozCancelFullScreen();
+      } else if (doc.msExitFullscreen) {
+        doc.msExitFullscreen();
       }
     };
 
@@ -42,26 +49,27 @@ var fullscream = (function () {
       }
     };
 
-    document.addEventListener('fullscreenchange', function () {
-      isFull = !!document.fullScreen;
+    // Listen for
+    doc.addEventListener('fullscreenchange', function () {
+      isFull = !!doc.fullScreen;
     }, false);
 
-    document.addEventListener('msfullscreenchange', function () {
-      isFull = !!document.msFullscreenElement;
+    doc.addEventListener('msfullscreenchange', function () {
+      isFull = !!doc.msFullscreenElement;
     }, false);
 
-    document.addEventListener('mozfullscreenchange', function () {
-      isFull = !!document.mozFullScreen;
+    doc.addEventListener('mozfullscreenchange', function () {
+      isFull = !!doc.mozFullScreen;
     }, false);
 
-    document.addEventListener('webkitfullscreenchange', function () {
-      isFull = !!document.webkitIsFullScreen;
+    doc.addEventListener('webkitfullscreenchange', function () {
+      isFull = !!doc.webkitIsFullScreen;
     }, false);
 
     return { toggle: toggle };
   };
 
-  return fullscream;
+  return Fullscream;
 
 }());
 //# sourceMappingURL=fullscream.js.map
