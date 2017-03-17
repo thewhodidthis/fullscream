@@ -10,7 +10,7 @@ export default {
       format: 'iife',
       indent: true,
       sourceMap: true,
-      moduleName: 'fullscream',
+      moduleName: 'Fullscream',
       dest: 'dist/fullscream.js'
     },
     {
