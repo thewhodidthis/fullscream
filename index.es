@@ -1,5 +1,12 @@
-const fullscream = (host = document.body) => {
-  // Flag
+// # Fullscream
+// Just another fullscren api wrapper
+
+// Shortcut to help with minification
+const doc = document;
+
+// Helps toggle fullscreen on host element
+const Fullscream = (host = doc.body) => {
+  // Current status
   let isFull = false;
 
   // Ask for
@@ -17,14 +24,14 @@ const fullscream = (host = document.body) => {
 
   // Drop out of
   const exit = () => {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
+    if (doc.exitFullscreen) {
+      doc.exitFullscreen();
+    } else if (doc.webkitExitFullscreen) {
+      doc.webkitExitFullscreen();
+    } else if (doc.mozCancelFullScreen) {
+      doc.mozCancelFullScreen();
+    } else if (doc.msExitFullscreen) {
+      doc.msExitFullscreen();
     }
   };
 
@@ -37,24 +44,25 @@ const fullscream = (host = document.body) => {
     }
   };
 
-  document.addEventListener('fullscreenchange', () => {
-    isFull = !!document.fullScreen;
+  // Listen for
+  doc.addEventListener('fullscreenchange', () => {
+    isFull = !!doc.fullScreen;
   }, false);
 
-  document.addEventListener('msfullscreenchange', () => {
-    isFull = !!document.msFullscreenElement;
+  doc.addEventListener('msfullscreenchange', () => {
+    isFull = !!doc.msFullscreenElement;
   }, false);
 
-  document.addEventListener('mozfullscreenchange', () => {
-    isFull = !!document.mozFullScreen;
+  doc.addEventListener('mozfullscreenchange', () => {
+    isFull = !!doc.mozFullScreen;
   }, false);
 
-  document.addEventListener('webkitfullscreenchange', () => {
-    isFull = !!document.webkitIsFullScreen;
+  doc.addEventListener('webkitfullscreenchange', () => {
+    isFull = !!doc.webkitIsFullScreen;
   }, false);
 
   return { toggle };
 };
 
-export default fullscream;
+export default Fullscream;
 
