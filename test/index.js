@@ -14,7 +14,6 @@ const styleTag = document.createElement('style');
 const css = document.createTextNode(`
   html {
     cursor: pointer;
-    background: #fff;
   }
 
   body, pre {
@@ -27,18 +26,28 @@ const css = document.createTextNode(`
   }
 
   :-webkit-full-screen {
+    color: #fff;
     width: 50vw;
     height: 50vh;
-    background: #ff0;
+    background: transparent;
   }
   :-moz-full-screen {
-    background: #ff0;
+    color: #fff;
+    width: 50vw;
+    height: 50vh;
+    background: transparent;
   }
   :-ms-fullscreen {
-    background: #ff0;
+    color: #fff;
+    width: 50vw;
+    height: 50vh;
+    background: transparent;
   }
   :fullscreen {
-    background: #ff0;
+    color: #fff;
+    width: 50vw;
+    height: 50vh;
+    background: transparent;
   }
 `);
 
