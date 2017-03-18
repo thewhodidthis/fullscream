@@ -55,6 +55,13 @@ styleTag.appendChild(css);
 
 document.head.appendChild(styleTag);
 
+test('will fake new', (t) => {
+  const fullscreen = new Fullscream();
+
+  t.ok(fullscreen);
+  t.end();
+});
+
 test('will default', (t) => {
   const fullscreen = Fullscream();
 
