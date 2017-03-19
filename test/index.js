@@ -11,6 +11,7 @@ document.head.appendChild(linkTag);
 
 // Add styles
 const styleTag = document.createElement('style');
+const whenFull = `color: #fff; width: 50vw; height: 50vh; background: transparent;`;
 const css = document.createTextNode(`
   html {
     cursor: pointer;
@@ -25,30 +26,10 @@ const css = document.createTextNode(`
     box-sizing: border-box;
   }
 
-  :-webkit-full-screen {
-    color: #fff;
-    width: 50vw;
-    height: 50vh;
-    background: transparent;
-  }
-  :-moz-full-screen {
-    color: #fff;
-    width: 50vw;
-    height: 50vh;
-    background: transparent;
-  }
-  :-ms-fullscreen {
-    color: #fff;
-    width: 50vw;
-    height: 50vh;
-    background: transparent;
-  }
-  :fullscreen {
-    color: #fff;
-    width: 50vw;
-    height: 50vh;
-    background: transparent;
-  }
+  ${'-webkit-full-screen,-moz-full-screen,-ms-fullscreen,fullscreen'
+    .split(',')
+    .map((a) => `:${a} { ${whenFull} }`)
+    .join('\n  ')}
 `);
 
 styleTag.appendChild(css);
