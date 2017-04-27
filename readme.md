@@ -10,11 +10,10 @@ npm install fullscream
 ```js
 import Fullscream from 'fullscream';
 
-// Feed this pseudo constructor with a target element of choice,
-// Will act on document body by default
-const fullscreen = Fullscream(document.body);
+const goFull = Fullscream();
 
 document.addEventListener('click', () => {
-  fullscreen.toggle();
+		// Feed with element of choice, will act on document body by default
+		goFull();
 });
 ```
