@@ -4,8 +4,8 @@ const Fullscream = require('../');
 // Add favicon
 const linkTag = document.createElement('link');
 
-linkTag.rel = 'shortcut icon';
 linkTag.href = 'data:;base64,iVBORw0KGgo=';
+linkTag.rel = 'icon';
 
 document.head.appendChild(linkTag);
 
@@ -36,28 +36,21 @@ styleTag.appendChild(css);
 
 document.head.appendChild(styleTag);
 
-test('will fake new', (t) => {
-  const fullscreen = new Fullscream();
-
-  t.ok(fullscreen);
-  t.end();
-});
-
 test('will default', (t) => {
-  const fullscreen = Fullscream();
+  const goFull = Fullscream();
 
-  t.ok(fullscreen, 'act on document body if target missing');
+  t.equals(typeof goFull, 'function', 'is callable');
   t.end();
 });
 
 test('will switch on click', (t) => {
-  const fullscreen = Fullscream(document.querySelector('pre'));
+  const goFull = Fullscream();
 
   document.addEventListener('click', () => {
-    fullscreen.toggle();
+    const state = goFull(document.querySelector('pre'));
 
-    t.pass('switch');
+    t.ok(state, 'has switched');
     t.end();
-  });
+  }, false);
 });
 

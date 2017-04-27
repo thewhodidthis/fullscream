@@ -4,69 +4,58 @@ var Fullscream = (function () {
   // # Fullscream
   // Just another fullscren api wrapper
 
-  // Shortcut to help with minification
-  var doc = document;
+  // Helps decide which vendor prefixed method or property to use
+  var patch = function patch(arr, obj) {
+    var fallback = function fallback() {};
+    var o = obj || document;
 
-  // Helps toggle fullscreen on host element
+    return arr.reduce(function (a, b) {
+      var c = o[b];
+
+      if (c !== undefined) {
+        return c;
+      }
+
+      return a;
+    }, fallback);
+  };
+
+  // Helps toggle fullscreen mode
   var Fullscream = function Fullscream() {
-    var host = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : doc.body;
+    // Check current status
+    var state = function state() {
+      var props = ['webkitFullscreenElement', 'mozFullScreenElement', 'msFullscreenElement', 'fullscreenElement'];
 
-    // Current status
-    var isFull = false;
+      return patch(props) !== null;
+    };
 
     // Ask for
-    var request = function request(element) {
-      var target = element || host;
+    var enter = function enter(target) {
+      var element = target || document.body;
+      var methods = ['webkitRequestFullScreen', 'mozRequestFullScreen', 'msRequestFullscreen', 'requestFullscreen'];
 
-      if (target.requestFullscreen) {
-        target.requestFullscreen();
-      } else if (target.webkitRequestFullScreen) {
-        target.webkitRequestFullScreen();
-      } else if (target.mozRequestFullScreen) {
-        target.mozRequestFullScreen();
-      }
+      patch(methods, element).call(element);
+
+      return state();
     };
 
     // Drop out of
-    var exit = function exit() {
-      if (doc.exitFullscreen) {
-        doc.exitFullscreen();
-      } else if (doc.webkitExitFullscreen) {
-        doc.webkitExitFullscreen();
-      } else if (doc.mozCancelFullScreen) {
-        doc.mozCancelFullScreen();
-      } else if (doc.msExitFullscreen) {
-        doc.msExitFullscreen();
-      }
+    var leave = function leave() {
+      var methods = ['webkitExitFullscreen', 'mozCancelFullScreen', 'msExitFullscreen', 'exitFullscreen'];
+
+      patch(methods).call(document);
+
+      return state();
     };
 
     // Switch for
-    var toggle = function toggle(element) {
-      if (isFull) {
-        exit();
-      } else {
-        request(element);
+    return function (element) {
+      if (state()) {
+        return leave();
       }
+
+      return enter(element);
     };
-
-    // Listen for
-    doc.addEventListener('fullscreenchange', function () {
-      isFull = !!doc.fullScreen;
-    }, false);
-
-    doc.addEventListener('msfullscreenchange', function () {
-      isFull = !!doc.msFullscreenElement;
-    }, false);
-
-    doc.addEventListener('mozfullscreenchange', function () {
-      isFull = !!doc.mozFullScreen;
-    }, false);
-
-    doc.addEventListener('webkitfullscreenchange', function () {
-      isFull = !!doc.webkitIsFullScreen;
-    }, false);
-
-    return { toggle: toggle };
   };
 
   return Fullscream;

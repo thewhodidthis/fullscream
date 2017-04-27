@@ -1,67 +1,73 @@
 // # Fullscream
 // Just another fullscren api wrapper
 
-// Shortcut to help with minification
-const doc = document;
+// Helps decide which vendor prefixed method or property to use
+const patch = (arr, obj) => {
+  const fallback = (() => {});
+  const o = obj || document;
 
-// Helps toggle fullscreen on host element
-const Fullscream = (host = doc.body) => {
-  // Current status
-  let isFull = false;
+  return arr.reduce((a, b) => {
+    const c = o[b];
+
+    if (c !== undefined) {
+      return c;
+    }
+
+    return a;
+  }, fallback);
+};
+
+// Helps toggle fullscreen mode
+const Fullscream = () => {
+  // Check current status
+  const state = () => {
+    const props = [
+      'webkitFullscreenElement',
+      'mozFullScreenElement',
+      'msFullscreenElement',
+      'fullscreenElement',
+    ];
+
+    return patch(props) !== null;
+  };
 
   // Ask for
-  const request = (element) => {
-    const target = element || host;
+  const enter = (target) => {
+    const element = target || document.body;
+    const methods = [
+      'webkitRequestFullScreen',
+      'mozRequestFullScreen',
+      'msRequestFullscreen',
+      'requestFullscreen',
+    ];
 
-    if (target.requestFullscreen) {
-      target.requestFullscreen();
-    } else if (target.webkitRequestFullScreen) {
-      target.webkitRequestFullScreen();
-    } else if (target.mozRequestFullScreen) {
-      target.mozRequestFullScreen();
-    }
+    patch(methods, element).call(element);
+
+    return state();
   };
 
   // Drop out of
-  const exit = () => {
-    if (doc.exitFullscreen) {
-      doc.exitFullscreen();
-    } else if (doc.webkitExitFullscreen) {
-      doc.webkitExitFullscreen();
-    } else if (doc.mozCancelFullScreen) {
-      doc.mozCancelFullScreen();
-    } else if (doc.msExitFullscreen) {
-      doc.msExitFullscreen();
-    }
+  const leave = () => {
+    const methods = [
+      'webkitExitFullscreen',
+      'mozCancelFullScreen',
+      'msExitFullscreen',
+      'exitFullscreen',
+    ];
+
+    patch(methods).call(document);
+
+    return state();
   };
 
   // Switch for
-  const toggle = (element) => {
-    if (isFull) {
-      exit();
-    } else {
-      request(element);
+  return (element) => {
+    if (state()) {
+      return leave();
     }
+
+    return enter(element);
   };
-
-  // Listen for
-  doc.addEventListener('fullscreenchange', () => {
-    isFull = !!doc.fullScreen;
-  }, false);
-
-  doc.addEventListener('msfullscreenchange', () => {
-    isFull = !!doc.msFullscreenElement;
-  }, false);
-
-  doc.addEventListener('mozfullscreenchange', () => {
-    isFull = !!doc.mozFullScreen;
-  }, false);
-
-  doc.addEventListener('webkitfullscreenchange', () => {
-    isFull = !!doc.webkitIsFullScreen;
-  }, false);
-
-  return { toggle };
 };
 
 export default Fullscream;
