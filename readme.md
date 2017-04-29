@@ -11,7 +11,7 @@ npm install fullscream
 import fullscream from 'fullscream';
 
 document.addEventListener('click', () => {
-		// Feed with element of choice, will act on document body by default
-		fullscream();
+    // Feed with element of choice, will act on document body by default
+    fullscream();
 });
 ```
