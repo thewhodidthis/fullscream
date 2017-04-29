@@ -20,7 +20,7 @@ var patch = function patch(arr, obj) {
 };
 
 // Helps toggle fullscreen mode
-var Fullscream = function Fullscream() {
+var fullscream = function () {
   // Check current status
   var state = function state() {
     var props = ['webkitFullscreenElement', 'mozFullScreenElement', 'msFullscreenElement', 'fullscreenElement'];
@@ -55,6 +55,6 @@ var Fullscream = function Fullscream() {
 
     return enter(element);
   };
-};
+}();
 
-module.exports = Fullscream;
+module.exports = fullscream;

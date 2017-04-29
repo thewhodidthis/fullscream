@@ -1,5 +1,5 @@
 const test = require('tape');
-const Fullscream = require('../');
+const fullscream = require('../');
 
 // Add favicon
 const linkTag = document.createElement('link');
@@ -10,8 +10,8 @@ linkTag.rel = 'icon';
 document.head.appendChild(linkTag);
 
 // Add styles
-const styleTag = document.createElement('style');
 const whenFull = `color: #fff; width: 50vw; height: 50vh; background: transparent;`;
+const styleTag = document.createElement('style');
 const css = document.createTextNode(`
   html {
     cursor: pointer;
@@ -37,19 +37,15 @@ styleTag.appendChild(css);
 document.head.appendChild(styleTag);
 
 test('will default', (t) => {
-  const goFull = Fullscream();
-
-  t.equals(typeof goFull, 'function', 'is callable');
+  t.equals(typeof fullscream, 'function', 'is ready');
   t.end();
 });
 
 test('will switch on click', (t) => {
-  const goFull = Fullscream();
-
   document.addEventListener('click', () => {
-    const state = goFull(document.querySelector('pre'));
+    const state = fullscream(document.querySelector('pre'));
 
-    t.ok(state, 'has switched');
+    t.ok(state, 'is full');
     t.end();
   }, false);
 });

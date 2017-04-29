@@ -1,4 +1,4 @@
-var Fullscream = (function () {
+var fullscream = (function () {
   'use strict';
 
   // # Fullscream
@@ -21,7 +21,7 @@ var Fullscream = (function () {
   };
 
   // Helps toggle fullscreen mode
-  var Fullscream = function Fullscream() {
+  var fullscream = function () {
     // Check current status
     var state = function state() {
       var props = ['webkitFullscreenElement', 'mozFullScreenElement', 'msFullscreenElement', 'fullscreenElement'];
@@ -56,9 +56,9 @@ var Fullscream = (function () {
 
       return enter(element);
     };
-  };
+  }();
 
-  return Fullscream;
+  return fullscream;
 
 }());
 //# sourceMappingURL=fullscream.js.map

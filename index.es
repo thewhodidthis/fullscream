@@ -18,7 +18,7 @@ const patch = (arr, obj) => {
 };
 
 // Helps toggle fullscreen mode
-const Fullscream = () => {
+const fullscream = (() => {
   // Check current status
   const state = () => {
     const props = [
@@ -68,7 +68,7 @@ const Fullscream = () => {
 
     return enter(element);
   };
-};
+})();
 
-export default Fullscream;
+export default fullscream;
 
