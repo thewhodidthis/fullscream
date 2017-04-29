@@ -10,7 +10,7 @@ linkTag.rel = 'icon';
 document.head.appendChild(linkTag);
 
 // Add styles
-const whenFull = `color: #fff; width: 50vw; height: 50vh; background: transparent;`;
+const whenFull = 'color: #fff; width: 50vw; height: 50vh; background: transparent;';
 const styleTag = document.createElement('style');
 const css = document.createTextNode(`
   html {
@@ -28,7 +28,7 @@ const css = document.createTextNode(`
 
   ${'-webkit-full-screen,-moz-full-screen,-ms-fullscreen,fullscreen'
     .split(',')
-    .map((a) => `:${a} { ${whenFull} }`)
+    .map(a => `:${a} { ${whenFull} }`)
     .join('\n  ')}
 `);
 
