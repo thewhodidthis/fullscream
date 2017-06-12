@@ -4,16 +4,16 @@
 // Helps decide which vendor prefixed method or property to use
 const patch = (arr, obj) => {
   const fallback = (() => {});
-  const o = obj || document;
+  const target = obj || document;
 
-  return arr.reduce((a, b) => {
-    const c = o[b];
+  return arr.reduce((acc, val) => {
+    const result = target[val];
 
-    if (c !== undefined) {
-      return c;
+    if (result !== undefined) {
+      return result;
     }
 
-    return a;
+    return acc;
   }, fallback);
 };
 

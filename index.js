@@ -6,16 +6,16 @@
 // Helps decide which vendor prefixed method or property to use
 var patch = function patch(arr, obj) {
   var fallback = function fallback() {};
-  var o = obj || document;
+  var target = obj || document;
 
-  return arr.reduce(function (a, b) {
-    var c = o[b];
+  return arr.reduce(function (acc, val) {
+    var result = target[val];
 
-    if (c !== undefined) {
-      return c;
+    if (result !== undefined) {
+      return result;
     }
 
-    return a;
+    return acc;
   }, fallback);
 };
 
