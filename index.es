@@ -4,16 +4,12 @@
 // Helps decide which vendor prefixed method or property to use
 const patch = (arr, obj) => {
   const fallback = (() => {});
-  const target = obj || document;
+  const lookup = obj || document;
 
   return arr.reduce((acc, val) => {
-    const result = target[val];
+    const result = lookup[val];
 
-    if (result !== undefined) {
-      return result;
-    }
-
-    return acc;
+    return result !== undefined ? result : acc;
   }, fallback);
 };
 
@@ -61,13 +57,7 @@ const fullscream = (() => {
   };
 
   // Switch for
-  return (element) => {
-    if (state()) {
-      return leave();
-    }
-
-    return enter(element);
-  };
+  return element => (state() ? leave() : enter(element));
 })();
 
 export default fullscream;

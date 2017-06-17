@@ -6,16 +6,12 @@
 // Helps decide which vendor prefixed method or property to use
 var patch = function patch(arr, obj) {
   var fallback = function fallback() {};
-  var target = obj || document;
+  var lookup = obj || document;
 
   return arr.reduce(function (acc, val) {
-    var result = target[val];
+    var result = lookup[val];
 
-    if (result !== undefined) {
-      return result;
-    }
-
-    return acc;
+    return result !== undefined ? result : acc;
   }, fallback);
 };
 
@@ -49,11 +45,7 @@ var fullscream = function () {
 
   // Switch for
   return function (element) {
-    if (state()) {
-      return leave();
-    }
-
-    return enter(element);
+    return state() ? leave() : enter(element);
   };
 }();
 
