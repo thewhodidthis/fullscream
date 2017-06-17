@@ -3,19 +3,17 @@ import babel from 'rollup-plugin-babel';
 export default {
   entry: 'index.es',
   plugins: [
-    babel(),
+    babel()
   ],
   targets: [
     {
       format: 'iife',
-      indent: true,
-      sourceMap: true,
+      dest: 'dist/fullscream.js',
       moduleName: 'fullscream',
-      dest: 'dist/fullscream.js'
     },
     {
       format: 'cjs',
-      dest: 'index.js'
+      dest: 'index.js',
     }
   ]
 };
