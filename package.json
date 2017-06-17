@@ -18,19 +18,12 @@
   },
   "scripts": {
     "test": "browserify test/*.js | testling -x open",
-    "clear": "npm run clear:dist && npm run clear:logs",
-    "clear:dist": "rm -rf dist/",
-    "clear:logs": "rm -f *.log",
-    "lint": "eslint index.es; exit 0",
-    "lint:test": "eslint test/index.js; exit 0",
-    "start": "npm run build && npm run build:min",
-    "build": "rollup -c",
-    "build:min": "uglifyjs dist/fullscream.js -cm > dist/fullscream.min.js",
-    "preversion": "npm start"
+    "lint": "eslint index.es",
+    "start": "rollup -c && uglifyjs dist/fullscream.js -cmo dist/fullscream.min.js"
   },
   "engines": {
-    "node": ">=4.2.4",
-    "npm": ">=3.5.3"
+    "node": ">=6.11.0",
+    "npm": ">=3.10.10"
   },
   "dependencies": {},
   "devDependencies": {
@@ -38,7 +31,7 @@
     "babel-plugin-external-helpers": "latest",
     "babel-preset-es2015": "latest",
     "browserify": "latest",
-    "eslint": "latest",
+    "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "latest",
     "eslint-plugin-import": "latest",
     "rollup": "latest",
