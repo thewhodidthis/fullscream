@@ -3,14 +3,13 @@
 
 // Helps decide which vendor prefixed method or property to use
 const patch = (arr, obj) => {
-  const fallback = (() => {});
   const lookup = obj || document;
 
   return arr.reduce((acc, val) => {
     const result = lookup[val];
 
     return result !== undefined ? result : acc;
-  }, fallback);
+  }, (() => {}));
 };
 
 // Helps toggle fullscreen mode

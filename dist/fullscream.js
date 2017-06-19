@@ -6,14 +6,13 @@ var fullscream = (function () {
 
 // Helps decide which vendor prefixed method or property to use
 var patch = function patch(arr, obj) {
-  var fallback = function fallback() {};
   var lookup = obj || document;
 
   return arr.reduce(function (acc, val) {
     var result = lookup[val];
 
     return result !== undefined ? result : acc;
-  }, fallback);
+  }, function () {});
 };
 
 // Helps toggle fullscreen mode
