@@ -22,8 +22,8 @@
     "start": "rollup -c && uglifyjs dist/fullscream.js -cmo dist/fullscream.min.js"
   },
   "engines": {
-    "node": ">=6.11.0",
-    "npm": ">=3.10.10"
+    "node": ">=4.2.4",
+    "npm": ">=3.5.3"
   },
   "dependencies": {},
   "devDependencies": {
