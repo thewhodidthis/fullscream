@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "browserify test/*.js | testling -x open",
-    "lint": "eslint index.es",
+    "lint": "eslint index.es test/*.js",
     "start": "rollup -c && uglifyjs dist/fullscream.js -cmo dist/fullscream.min.js"
   },
   "engines": {
