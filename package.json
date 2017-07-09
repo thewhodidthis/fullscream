@@ -17,9 +17,13 @@
     "url": "https://github.com/thewhodidthis/fullscream/issues"
   },
   "scripts": {
-    "test": "browserify test/*.js | testling -x open",
-    "lint": "eslint index.es test/*.js",
-    "start": "rollup -c && uglifyjs dist/fullscream.js -cmo dist/fullscream.min.js"
+    "pretest": "eslint test.js",
+    "test": "browserify test | kpow",
+    "prestart": "eslint index.es",
+    "start": "rollup -f cjs index.es | buble > index.js"
+  },
+  "eslintConfig": {
+    "extends": "@thewhodidthis"
   },
   "engines": {
     "node": ">=4.2.4",
@@ -27,18 +31,12 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "babel-eslint": "latest",
-    "babel-plugin-external-helpers": "latest",
-    "babel-preset-latest": "latest",
+    "@thewhodidthis/eslint-config": "latest",
     "browserify": "latest",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb-base": "latest",
-    "eslint-plugin-import": "latest",
+    "buble": "latest",
+    "kpow": "latest",
     "rollup": "latest",
-    "rollup-plugin-babel": "latest",
-    "tape": "latest",
-    "testling": "latest",
-    "uglify-js": "latest"
+    "tape": "latest"
   },
   "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
   "license": "Unlicense"
