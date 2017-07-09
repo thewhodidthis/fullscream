@@ -3,14 +3,14 @@
 
 // Helps decide which vendor prefixed method or property to use
 const patch = (arr, obj) => {
-  const lookup = obj || document;
+  const lookup = obj || document
 
   return arr.reduce((acc, val) => {
-    const result = lookup[val];
+    const result = lookup[val]
 
-    return result !== undefined ? result : acc;
-  }, (() => {}));
-};
+    return result !== undefined ? result : acc
+  }, () => {})
+}
 
 // Helps toggle fullscreen mode
 const fullscream = (() => {
@@ -20,26 +20,26 @@ const fullscream = (() => {
       'webkitFullscreenElement',
       'mozFullScreenElement',
       'msFullscreenElement',
-      'fullscreenElement',
-    ];
+      'fullscreenElement'
+    ]
 
-    return patch(props) !== null;
-  };
+    return patch(props) !== null
+  }
 
   // Ask for
   const enter = (target) => {
-    const element = target || document.body;
+    const element = target || document.body
     const methods = [
       'webkitRequestFullScreen',
       'mozRequestFullScreen',
       'msRequestFullscreen',
-      'requestFullscreen',
-    ];
+      'requestFullscreen'
+    ]
 
-    patch(methods, element).call(element);
+    patch(methods, element).call(element)
 
-    return state();
-  };
+    return state()
+  }
 
   // Drop out of
   const leave = () => {
@@ -47,17 +47,16 @@ const fullscream = (() => {
       'webkitExitFullscreen',
       'mozCancelFullScreen',
       'msExitFullscreen',
-      'exitFullscreen',
-    ];
+      'exitFullscreen'
+    ]
 
-    patch(methods).call(document);
+    patch(methods).call(document)
 
-    return state();
-  };
+    return state()
+  }
 
   // Switch for
-  return element => (state() ? leave() : enter(element));
-})();
+  return element => (state() ? leave() : enter(element))
+})()
 
-export default fullscream;
-
+export default fullscream

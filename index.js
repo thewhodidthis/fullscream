@@ -4,48 +4,62 @@
 // Just another fullscren api wrapper
 
 // Helps decide which vendor prefixed method or property to use
-var patch = function patch(arr, obj) {
+var patch = function (arr, obj) {
   var lookup = obj || document;
 
   return arr.reduce(function (acc, val) {
     var result = lookup[val];
 
-    return result !== undefined ? result : acc;
-  }, function () {});
+    return result !== undefined ? result : acc
+  }, function () {})
 };
 
 // Helps toggle fullscreen mode
-var fullscream = function () {
+var fullscream = (function () {
   // Check current status
-  var state = function state() {
-    var props = ['webkitFullscreenElement', 'mozFullScreenElement', 'msFullscreenElement', 'fullscreenElement'];
+  var state = function () {
+    var props = [
+      'webkitFullscreenElement',
+      'mozFullScreenElement',
+      'msFullscreenElement',
+      'fullscreenElement'
+    ];
 
-    return patch(props) !== null;
+    return patch(props) !== null
   };
 
   // Ask for
-  var enter = function enter(target) {
+  var enter = function (target) {
     var element = target || document.body;
-    var methods = ['webkitRequestFullScreen', 'mozRequestFullScreen', 'msRequestFullscreen', 'requestFullscreen'];
+    var methods = [
+      'webkitRequestFullScreen',
+      'mozRequestFullScreen',
+      'msRequestFullscreen',
+      'requestFullscreen'
+    ];
 
     patch(methods, element).call(element);
 
-    return state();
+    return state()
   };
 
   // Drop out of
-  var leave = function leave() {
-    var methods = ['webkitExitFullscreen', 'mozCancelFullScreen', 'msExitFullscreen', 'exitFullscreen'];
+  var leave = function () {
+    var methods = [
+      'webkitExitFullscreen',
+      'mozCancelFullScreen',
+      'msExitFullscreen',
+      'exitFullscreen'
+    ];
 
     patch(methods).call(document);
 
-    return state();
+    return state()
   };
 
   // Switch for
-  return function (element) {
-    return state() ? leave() : enter(element);
-  };
-}();
+  return function (element) { return (state() ? leave() : enter(element)); }
+})();
 
 module.exports = fullscream;
+
