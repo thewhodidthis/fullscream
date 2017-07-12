@@ -2,10 +2,6 @@
   "name": "fullscream",
   "version": "1.0.6",
   "description": "Helps go fullscreen",
-  "keywords": [
-    "fullscreen",
-    "screenfull"
-  ],
   "main": "index.js",
   "module": "index.es",
   "homepage": "https://github.com/thewhodidthis/fullscream#readme",
@@ -34,6 +30,7 @@
     "@thewhodidthis/eslint-config": "latest",
     "browserify": "latest",
     "buble": "latest",
+    "eslint": "latest",
     "kpow": "latest",
     "rollup": "latest",
     "tape": "latest"
