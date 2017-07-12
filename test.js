@@ -1,5 +1,6 @@
+require('kpow')()
+
 const test = require('tape')
-const kpow = require('kpow')
 const fullscream = require('./')
 
 // Add styles
@@ -28,8 +29,6 @@ const css = document.createTextNode(`
 styleTag.appendChild(css)
 
 document.head.appendChild(styleTag)
-
-kpow()
 
 test('will default', (t) => {
   t.equals(typeof fullscream, 'function', 'is ready')
