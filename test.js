@@ -1,3 +1,5 @@
+'use strict'
+
 require('kpow')()
 
 const test = require('tape')
