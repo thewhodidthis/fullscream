@@ -3,7 +3,7 @@
   "version": "1.0.8",
   "description": "Helps go fullscreen",
   "main": "index.js",
-  "module": "index.mjs",
+  "module": "index.es",
   "homepage": "https://github.com/thewhodidthis/fullscream#readme",
   "repository": {
     "type": "git",
@@ -15,8 +15,8 @@
   "scripts": {
     "pretest": "eslint test.js",
     "test": "browserify test | kpow",
-    "prestart": "eslint index.mjs",
-    "start": "rollup -f cjs index.mjs | buble > index.js"
+    "prestart": "eslint index.es",
+    "start": "rollup -f cjs index.es | buble > index.js"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
