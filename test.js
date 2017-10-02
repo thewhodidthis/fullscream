@@ -1,9 +1,10 @@
 'use strict'
 
-require('kpow')()
-
+const kpow = require('kpow')
 const test = require('tape')
 const fullscream = require('./')
+
+kpow()
 
 // Add styles
 const whenFull = 'color: #fff; width: 50vw; height: 50vh; background: transparent;'
@@ -29,7 +30,6 @@ const css = document.createTextNode(`
 `)
 
 styleTag.appendChild(css)
-
 document.head.appendChild(styleTag)
 
 test('will default', (t) => {
