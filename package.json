@@ -14,27 +14,32 @@
   },
   "scripts": {
     "pretest": "eslint test.js",
-    "test": "browserify test | kpow",
+    "test": "rollup -c node:x -f iife test.js | kpow",
     "prestart": "eslint index.es",
-    "start": "rollup -f cjs index.es | buble > index.js"
+    "start": "rollup -f cjs index.es > index.js"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
   },
   "engines": {
-    "node": ">=4.2.4",
-    "npm": ">=3.5.3"
+    "node": ">=6.4.0",
+    "npm": ">=3.11.0"
   },
   "dependencies": {},
   "devDependencies": {
     "@thewhodidthis/eslint-config": "latest",
     "browserify": "latest",
     "buble": "latest",
+    "cutaway": "latest",
     "eslint": "latest",
     "kpow": "latest",
     "rollup": "latest",
-    "tape": "latest"
+    "rollup-config-x": "latest",
+    "tapeless": "latest"
   },
+  "keywords": [
+    "fullscreen"
+  ],
   "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
   "license": "Unlicense"
 }
