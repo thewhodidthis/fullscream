@@ -1,4 +1,3 @@
-## Fullscream
 > Just another fullscreen api wrapper
 
 ### Setup
