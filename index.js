@@ -4,21 +4,21 @@
 // Just another fullscren api wrapper
 
 // Helps decide which vendor prefixed method or property to use
-var patch = function (arr, obj) {
-  var lookup = obj || document;
+const patch = (arr, obj) => {
+  const lookup = obj || document;
 
-  return arr.reduce(function (acc, val) {
-    var result = lookup[val];
+  return arr.reduce((acc, val) => {
+    const result = lookup[val];
 
     return result !== undefined ? result : acc
-  }, function () {})
+  }, () => {})
 };
 
 // Helps toggle fullscreen mode
-var fullscream = (function () {
+const fullscream = (() => {
   // Check current status
-  var state = function () {
-    var props = [
+  const state = () => {
+    const props = [
       'webkitFullscreenElement',
       'mozFullScreenElement',
       'msFullscreenElement',
@@ -29,9 +29,9 @@ var fullscream = (function () {
   };
 
   // Ask for
-  var enter = function (target) {
-    var element = target || document.body;
-    var methods = [
+  const enter = (target) => {
+    const element = target || document.body;
+    const methods = [
       'webkitRequestFullScreen',
       'mozRequestFullScreen',
       'msRequestFullscreen',
@@ -44,8 +44,8 @@ var fullscream = (function () {
   };
 
   // Drop out of
-  var leave = function () {
-    var methods = [
+  const leave = () => {
+    const methods = [
       'webkitExitFullscreen',
       'mozCancelFullScreen',
       'msExitFullscreen',
@@ -58,8 +58,7 @@ var fullscream = (function () {
   };
 
   // Switch for
-  return function (element) { return (state() ? leave() : enter(element)); }
+  return element => (state() ? leave() : enter(element))
 })();
 
 module.exports = fullscream;
-
