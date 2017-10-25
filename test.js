@@ -1,10 +1,8 @@
-'use strict'
+import 'cutaway'
+import { report, assert } from 'tapeless'
+import fullscream from './index.es'
 
-const kpow = require('kpow')
-const test = require('tape')
-const fullscream = require('./')
-
-kpow()
+const { ok, equal } = assert
 
 // Add styles
 const whenFull = 'color: #fff; width: 50vw; height: 50vh; background: transparent;'
@@ -32,16 +30,15 @@ const css = document.createTextNode(`
 styleTag.appendChild(css)
 document.head.appendChild(styleTag)
 
-test('will default', (t) => {
-  t.equals(typeof fullscream, 'function', 'is ready')
-  t.end()
-})
+equal(typeof fullscream, 'function', 'is ready', 'will default')
 
-test('will switch on click', (t) => {
-  document.addEventListener('click', () => {
-    const state = fullscream(document.querySelector('pre'))
+const handleClick = () => {
+  const state = fullscream(document.querySelector('pre'))
 
-    t.ok(state, 'is full')
-    t.end()
-  }, false)
-})
+  ok(state, 'is full', 'will switch on click')
+  report()
+
+  document.removeEventListener('click', handleClick)
+}
+
+document.addEventListener('click', handleClick, false)
