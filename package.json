@@ -28,8 +28,6 @@
   "dependencies": {},
   "devDependencies": {
     "@thewhodidthis/eslint-config": "latest",
-    "browserify": "latest",
-    "buble": "latest",
     "cutaway": "latest",
     "eslint": "latest",
     "kpow": "latest",
