@@ -2,8 +2,8 @@
   "name": "fullscream",
   "version": "1.0.11",
   "description": "Helps go fullscreen",
-  "main": "index.js",
-  "module": "index.es",
+  "main": "index",
+  "module": "index.mjs",
   "homepage": "https://github.com/thewhodidthis/fullscream#readme",
   "repository": {
     "type": "git",
@@ -15,15 +15,15 @@
   "scripts": {
     "pretest": "eslint test.js",
     "test": "rollup -c node:x -f iife test.js | kpow",
-    "prestart": "eslint index.es",
-    "start": "rollup -f cjs index.es > index.js"
+    "prestart": "eslint index.mjs",
+    "start": "rollup -f cjs index.mjs > index.js"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
   },
   "engines": {
-    "node": ">=6.4.0",
-    "npm": ">=3.11.0"
+    "node": ">=6.11.0",
+    "npm": ">=3.10.10"
   },
   "dependencies": {},
   "devDependencies": {
