@@ -3,62 +3,42 @@
 // # Fullscream
 // Just another fullscren api wrapper
 
-// Helps decide which vendor prefixed method or property to use
-const patch = (arr, obj) => {
-  const lookup = obj || document;
-
-  return arr.reduce((acc, val) => {
-    const result = lookup[val];
-
-    return result !== undefined ? result : acc
-  }, () => {})
-};
-
 // Helps toggle fullscreen mode
-const fullscream = (() => {
+const fullscream = ((page) => {
+  // Helps decide which vendor prefixed method or property to use
+  const patch = (source = {}, ...keys) => keys.reduce((memo, k) => {
+    const next = source[k];
+
+    return next === undefined ? memo : next
+  }, () => {});
+
   // Check current status
-  const state = () => {
-    const props = [
-      'webkitFullscreenElement',
-      'mozFullScreenElement',
-      'msFullscreenElement',
-      'fullscreenElement'
-    ];
-
-    return patch(props) !== null
-  };
-
-  // Ask for
-  const enter = (target) => {
-    const element = target || document.body;
-    const methods = [
-      'webkitRequestFullScreen',
-      'mozRequestFullScreen',
-      'msRequestFullscreen',
-      'requestFullscreen'
-    ];
-
-    patch(methods, element).call(element);
-
-    return state()
-  };
+  const state = () => patch(page,
+    'webkitFullscreenElement',
+    'mozFullScreenElement',
+    'msFullscreenElement',
+    'fullscreenElement'
+  ) !== null;
 
   // Drop out of
-  const leave = () => {
-    const methods = [
-      'webkitExitFullscreen',
-      'mozCancelFullScreen',
-      'msExitFullscreen',
-      'exitFullscreen'
-    ];
+  const leave = () => patch(page,
+    'webkitExitFullscreen',
+    'mozCancelFullScreen',
+    'msExitFullscreen',
+    'exitFullscreen'
+  ).call(page);
 
-    patch(methods).call(document);
+  // Ask for
+  const enter = (node = page.body) => patch(node,
+    'webkitRequestFullScreen',
+    'mozRequestFullScreen',
+    'msRequestFullscreen',
+    'requestFullscreen'
+  ).call(node);
 
-    return state()
-  };
-
-  // Switch for
-  return element => (state() ? leave() : enter(element))
-})();
+  // Toggle
+  /* eslint no-sequences: 1 */
+  return node => (state() ? leave() : enter(node), state())
+})(document);
 
 module.exports = fullscream;
