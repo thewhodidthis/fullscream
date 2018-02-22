@@ -1,6 +1,6 @@
 import 'cutaway'
 import { report, assert } from 'tapeless'
-import fullscream from './index.es'
+import fullscream from './index.mjs'
 
 const { ok, equal } = assert
 
