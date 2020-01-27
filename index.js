@@ -3,42 +3,39 @@
 // # Fullscream
 // Just another fullscren api wrapper
 
+// Helps decide which vendor prefixed method or property to use
+const patch = (source = {}, ...keys) => keys.reduce((memo, k) => {
+  const next = source[k];
+
+  return next === undefined ? memo : next
+}, () => {});
+
+const state = (node = document) => patch(node,
+  'webkitFullscreenElement',
+  'mozFullScreenElement',
+  'msFullscreenElement',
+  'fullscreenElement'
+);
+
+const enter = (node = document.body) => patch(node,
+  'webkitRequestFullScreen',
+  'mozRequestFullScreen',
+  'msRequestFullscreen',
+  'requestFullscreen'
+).call(node);
+
+const leave = (node = document) => patch(node,
+  'webkitExitFullscreen',
+  'mozCancelFullScreen',
+  'msExitFullscreen',
+  'exitFullscreen'
+).call(node);
+
 // Helps toggle fullscreen mode
-const fullscream = ((page) => {
-  // Helps decide which vendor prefixed method or property to use
-  const patch = (source = {}, ...keys) => keys.reduce((memo, k) => {
-    const next = source[k];
+const fullscream = node => (state() !== null ? leave() : enter(node));
 
-    return next === undefined ? memo : next
-  }, () => {});
-
-  // Check current status
-  const state = () => patch(page,
-    'webkitFullscreenElement',
-    'mozFullScreenElement',
-    'msFullscreenElement',
-    'fullscreenElement'
-  ) !== null;
-
-  // Drop out of
-  const leave = () => patch(page,
-    'webkitExitFullscreen',
-    'mozCancelFullScreen',
-    'msExitFullscreen',
-    'exitFullscreen'
-  ).call(page);
-
-  // Ask for
-  const enter = (node = page.body) => patch(node,
-    'webkitRequestFullScreen',
-    'mozRequestFullScreen',
-    'msRequestFullscreen',
-    'requestFullscreen'
-  ).call(node);
-
-  // Toggle
-  /* eslint no-sequences: 1 */
-  return node => (state() ? leave() : enter(node), state())
-})(document);
+fullscream.state = state;
+fullscream.enter = enter;
+fullscream.leave = leave;
 
 module.exports = fullscream;
