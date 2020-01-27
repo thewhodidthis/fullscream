@@ -30,15 +30,37 @@ const css = document.createTextNode(`
 styleTag.appendChild(css)
 document.head.appendChild(styleTag)
 
-equal(typeof fullscream, 'function', 'is ready', 'will default')
+equal
+  .describe('is ready', 'will default')
+  .test(typeof fullscream, 'function')
+
+ok
+  .describe('methods in place')
+  .test(fullscream.state)
+  .test(fullscream.enter)
+  .test(fullscream.leave)
+
+equal
+  .test(typeof fullscream.state, 'function')
+  .test(typeof fullscream.enter, 'function')
+  .test(typeof fullscream.leave, 'function')
 
 const handleClick = () => {
-  const state = fullscream(document.querySelector('pre'))
-
-  ok(state, 'is full', 'will switch on click')
-  report()
+  fullscream(document.querySelector('pre'))
 
   document.removeEventListener('click', handleClick)
 }
 
 document.addEventListener('click', handleClick, false)
+
+const handleFullscreenChange = () => {
+  ok
+    .describe('is full', 'will switch on click')
+    .test(fullscream.state())
+
+  report()
+
+  document.removeEventListener('webkitfullscreenchange', handleFullscreenChange)
+}
+
+document.addEventListener('webkitfullscreenchange', handleFullscreenChange, false)
