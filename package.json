@@ -25,13 +25,12 @@
     "node": ">=6.11.0",
     "npm": ">=3.10.10"
   },
-  "dependencies": {},
   "devDependencies": {
     "@thewhodidthis/eslint-config": "latest",
     "cutaway": "latest",
-    "eslint": "latest",
+    "eslint": "^6.8.0",
     "kpow": "latest",
-    "rollup": "latest",
+    "rollup": "^1.29.1",
     "rollup-config-x": "latest",
     "tapeless": "latest"
   },
