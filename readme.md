@@ -12,6 +12,6 @@ import fullscream from 'fullscream'
 
 // Acts on document body by default
 document.addEventListener('click', () => {
-    fullscream()
+  fullscream()
 })
 ```
