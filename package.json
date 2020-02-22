@@ -21,7 +21,7 @@
     "prestart": "eslint index.mjs",
     "start": "rollup -f cjs -o index.js index.mjs",
     "pretest": "eslint test.js",
-    "test": "rollup -c -f iife test.js | kpow"
+    "test": "rollup -c node:x -f iife test.js | kpow"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
