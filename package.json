@@ -2,41 +2,42 @@
   "name": "fullscream",
   "version": "1.0.13",
   "description": "Helps go fullscreen",
-  "main": "index",
-  "module": "index.mjs",
+  "keywords": [
+    "fullscreen"
+  ],
   "homepage": "https://github.com/thewhodidthis/fullscream#readme",
+  "bugs": {
+    "url": "https://github.com/thewhodidthis/fullscream/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thewhodidthis/fullscream.git"
   },
-  "bugs": {
-    "url": "https://github.com/thewhodidthis/fullscream/issues"
-  },
+  "license": "ISC",
+  "author": "Sotiri Bakagiannis <sotirios.bakagiannis@gmail.com> (http://thewhodidthis.com)",
+  "main": "index",
+  "module": "index.mjs",
   "scripts": {
-    "pretest": "eslint test.js",
-    "test": "rollup -c -f iife test.js | kpow",
     "prestart": "eslint index.mjs",
-    "start": "rollup -f cjs index.mjs > index.js"
+    "start": "rollup -f cjs -o index.js index.mjs",
+    "pretest": "eslint test.js",
+    "test": "rollup -c -f iife test.js | kpow"
   },
   "eslintConfig": {
     "extends": "@thewhodidthis"
   },
+  "dependencies": {},
+  "devDependencies": {
+    "@thewhodidthis/eslint-config": "^0.0.18",
+    "cutaway": "^0.0.8",
+    "eslint": "^6.8.0",
+    "kpow": "^0.1.5",
+    "rollup": "^1.31.1",
+    "rollup-config-x": "^1.0.5",
+    "tapeless": "^0.0.10"
+  },
   "engines": {
     "node": ">=6.11.0",
     "npm": ">=3.10.10"
-  },
-  "devDependencies": {
-    "@rollup/plugin-node-resolve": "^7.1.1",
-    "@thewhodidthis/eslint-config": "^0.0.11",
-    "cutaway": "^0.0.7",
-    "eslint": "^6.8.0",
-    "kpow": "^0.1.4",
-    "rollup": "^1.31.0",
-    "tapeless": "^0.0.7"
-  },
-  "keywords": [
-    "fullscreen"
-  ],
-  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
-  "license": "Unlicense"
+  }
 }
