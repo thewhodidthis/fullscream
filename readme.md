@@ -1,12 +1,20 @@
-> Just another fullscreen api wrapper
+## about
 
-### Setup
+Just another [Fullscreen API](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API) wrapper.
+
+## setup
+
+Fetch the latest version from GitHub directly:
+
 ```sh
-# Fetch latest from github
-npm i thewhodidthis/fullscream
+# Add to 'package.json' dependencies
+npm install thewhodidthis/fullscream
 ```
 
-### Usage
+## usage
+
+Expect a toggle style function by default when importing with _state_, _enter_, and _leave_ methods attached.
+
 ```js
 import fullscream from 'fullscream'
 
