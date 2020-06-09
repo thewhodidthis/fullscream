@@ -18,8 +18,8 @@ Expect a toggle style function by default when importing with _state_, _enter_, 
 ```js
 import fullscream from 'fullscream'
 
-// Acts on document body by default
 document.addEventListener('click', () => {
+  // Acts on document body by default
   fullscream()
 })
 ```
