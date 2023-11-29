@@ -12,7 +12,12 @@ export default class Scream extends HTMLElement {
       // Safe to skip removal, because extra event listeners
       // are discarded when identical.
       this.addEventListener("click", () => {
-        fullscream(this.firstElementChild)
+        fullscream(this.firstElementChild).then(() => {
+          const state = fullscream.state()
+          const e = new CustomEvent("change", { detail: { state } })
+
+          this.dispatchEvent(e)
+        })
       })
     }
   }
