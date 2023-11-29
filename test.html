@@ -65,25 +65,19 @@
         .describe("leave is a function", "click anywhere")
         .test(typeof fullscream.leave, "function")
 
-      const handleClick = () => {
+      document.addEventListener("click", () => {
         fullscream(document.querySelector("pre"))
+      }, { once: true })
 
-        document.removeEventListener("click", handleClick)
-      }
+      document.onwebkitfullscreenchange = document.onfullscreenchange = () => {
+        document.onwebkitfullscreenchange = document.onfullscreenchange = null
 
-      document.addEventListener("click", handleClick, false)
-
-      const handleFullscreenChange = () => {
         ok
           .describe("is full", "will switch on click")
           .test(fullscream.state())
 
         report()
-
-        document.removeEventListener("webkitfullscreenchange", handleFullscreenChange)
       }
-
-      document.addEventListener("webkitfullscreenchange", handleFullscreenChange, false)
     </script>
   </head>
   <body></body>
