@@ -17,6 +17,7 @@ export default class Scream extends HTMLElement {
           const e = new CustomEvent("change", { detail: { state } })
 
           this.dispatchEvent(e)
+          this.firstElementChild.toggleAttribute("fullscream")
         })
       })
     }
