@@ -1,4 +1,4 @@
-import fullscream from "./main.js"
+import fullscream from "./fullscream.js"
 
 export default class Scream extends HTMLElement {
   constructor() {
@@ -9,17 +9,13 @@ export default class Scream extends HTMLElement {
   }
   connectedCallback() {
     if (this.isConnected && this.firstElementChild) {
-      // Safe to skip removal, because extra event listeners
-      // are discarded when identical.
-      this.addEventListener("click", () => {
-        fullscream(this.firstElementChild).then(() => {
-          const state = fullscream.state() !== null
-          const e = new CustomEvent("change", { detail: { state } })
+      this.onclick = () => {
+        fullscream(this.firstElementChild)
+      }
 
-          this.dispatchEvent(e)
-          this.firstElementChild.toggleAttribute("fullscream")
-        })
-      })
+      this.onfullscreenchange = this.onwebkitfullscreenchange = () => {
+        this.firstElementChild.toggleAttribute("fullscream")
+      }
     }
   }
 }
