@@ -1,4 +1,4 @@
-import fullscream from "./fullscream.js"
+import fullscream from "./main.js"
 
 export default class Scream extends HTMLElement {
   constructor() {
