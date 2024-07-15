@@ -8,13 +8,15 @@ export default class Scream extends HTMLElement {
     this.shadowRoot.appendChild(document.createElement("slot"))
   }
   connectedCallback() {
-    if (this.isConnected && this.firstElementChild) {
+    const target = this.firstElementChild
+
+    if (this.isConnected && target) {
       this.onclick = () => {
-        fullscream(this.firstElementChild)
+        fullscream(target)
       }
 
-      this.onfullscreenchange = this.onwebkitfullscreenchange = () => {
-        this.firstElementChild.toggleAttribute("fullscream")
+      target.onfullscreenchange = target.onwebkitfullscreenchange = () => {
+        target.toggleAttribute("fullscream")
       }
     }
   }
