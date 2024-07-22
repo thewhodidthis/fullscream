@@ -14,7 +14,11 @@ export default class Scream extends HTMLElement {
       this.onclick = () => {
         fullscream(target)
       }
-
+      this.onkeydown = (e) => {
+        if (e.key === "Enter") {
+          fullscream(target)
+        }
+      }
       target.onfullscreenchange = target.onwebkitfullscreenchange = () => {
         target.toggleAttribute("fullscream")
       }
