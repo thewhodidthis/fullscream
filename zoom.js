@@ -38,8 +38,7 @@ export default class Zoom extends HTMLElement {
           font-size: 1.3125rem;
           font-weight: normal;
         }
-      </style>
-    `)
+      </style>`)
 
     this.attachShadow({ mode: "open" })
     this.shadowRoot.appendChild(template)
