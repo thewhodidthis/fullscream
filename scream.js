@@ -15,7 +15,7 @@ export default class Scream extends HTMLElement {
         fullscream(target)
       }
       this.onkeydown = (e) => {
-        if (e.key === "Enter") {
+        if (e.code === "Enter" || e.code === "Space") {
           fullscream(target)
         }
       }
