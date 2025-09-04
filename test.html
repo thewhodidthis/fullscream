@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>fullscream.js</title>
+    <style>
+      html {
+        cursor: pointer;
+      }
+      body,
+      pre {
+        margin: 0;
+      }
+      pre {
+        padding: 0.5rem;
+        box-sizing: border-box;
+      }
+      :-webkit-full-screen {
+        background: transparent;
+        color: white;
+        height: 50vh;
+        width: 50vw;
+      }
+      :-moz-full-screen {
+        background: transparent;
+        color: white;
+        height: 50vh;
+        width: 50vw;
+      }
+      :-ms-fullscreen {
+        background: transparent;
+        color: white;
+        height: 50vh;
+        width: 50vw;
+      }
+      :fullscreen {
+        background: transparent;
+        color: white;
+        height: 50vh;
+        width: 50vw;
+      }
+    </style>
+    <script type="module">
+      import "https://thewhodidthis.github.io/cutaway/main.js"
+      import { assert, report } from "https://thewhodidthis.github.io/tapeless/main.js"
+      import fullscream from "./main.js"
+
+      const { ok, equal } = assert
+
+      equal
+        .describe("is ready", "will default")
+        .test(typeof fullscream, "function")
+
+      ok
+        .test(fullscream.state)
+        .test(fullscream.enter)
+        .describe(undefined, "methods in place")
+        .test(fullscream.leave)
+
+      equal
+        .describe("state is a function")
+        .test(typeof fullscream.state, "function")
+        .describe("enter is a function")
+        .test(typeof fullscream.enter, "function")
+        .describe("leave is a function", "click anywhere")
+        .test(typeof fullscream.leave, "function")
+
+      document.addEventListener("click", () => {
+        fullscream(document.querySelector("pre"))
+      }, { once: true })
+
+      document.onwebkitfullscreenchange = document.onfullscreenchange = () => {
+        document.onwebkitfullscreenchange = document.onfullscreenchange = null
+
+        ok
+          .describe("is full", "will switch on click")
+          .test(fullscream.state())
+
+        report()
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

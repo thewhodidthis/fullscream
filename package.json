@@ -1,0 +1,22 @@
+{
+  "name": "fullscream",
+  "version": "5.0.0",
+  "private": true,
+  "description": "Helps go fullscreen",
+  "homepage": "https://github.com/thewhodidthis/fullscream#readme",
+  "bugs": "https://github.com/thewhodidthis/fullscream/issues",
+  "repository": "github:thewhodidthis/fullscream",
+  "license": "ISC",
+  "author": "Thepersonwhodidthis <me@thewhodidthis.com> (http://thewhodidthis.com)",
+  "engines": {
+    "node": ">=18.14.0",
+    "npm": ">=9.2.1"
+  },
+  "browser": "./main.js",
+  "type": "module",
+  "exports": {
+    ".": "./main.js",
+    "scream": "./scream.js",
+    "zoom": "./zoom.js"
+  }
+}
